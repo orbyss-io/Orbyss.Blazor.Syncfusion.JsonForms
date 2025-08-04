@@ -1,0 +1,26 @@
+﻿@inherits SyncfusionFormComponentBase
+
+<SfMultiSelect TValue="List<string>"
+               ID="@id"
+               TItem="TranslatedEnumItem"
+               DataSource=@Items
+               Placeholder="@Label"
+               Mode="@MultiSelectOptions.Mode"
+               ShowDropDownIcon="@MultiSelectOptions.ShowDropdownIcon"
+               EnableSelectionOrder="@MultiSelectOptions.EnableSelectionOrder"
+               ShowSelectAll="MultiSelectOptions.ShowSelectAll"
+               CssClass="@(FullClass + " custom-multiselect")"
+               AllowCustomValue=false
+               AllowFiltering=@Searchable
+               Enabled=@(!Disabled)
+               Readonly=@ReadOnly
+               FilterType="FilterType.Contains"
+               FloatLabelType="FloatLabelType.Always"
+               Value="@values"
+               ValueChanged="ChangeSelectedValues"
+               Width="@Width"
+               MaximumSelectionLength="@(MultiSelectOptions.MaximumSelection)"
+               ShowClearButton=@Clearable>
+
+    <MultiSelectFieldSettings Value="@(nameof(TranslatedEnumItem.Value))" Text="@(nameof(TranslatedEnumItem.Label))" />
+</SfMultiSelect>

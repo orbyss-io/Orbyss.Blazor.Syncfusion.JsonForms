@@ -1,0 +1,12 @@
+﻿<SyncfusionRow Class="mt-4 align-space-between">
+    <SyncfusionColumn>
+        @ChildContent
+    </SyncfusionColumn>
+
+    @if (!ReadOnly)
+    {
+        <SyncfusionButton IconClass="@Constants.SyncfusionButtonIconsCss.DeleteRow"
+                          Class="@($"{Constants.SyncfusionButtonCss.Outline} {Constants.SyncfusionButtonCss.Danger}")"
+                          OnClicked="@OnRemoveClicked" />
+    }
+</SyncfusionRow>

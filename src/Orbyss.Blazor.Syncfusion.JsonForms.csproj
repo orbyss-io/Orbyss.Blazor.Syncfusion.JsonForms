@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+		<SupportedPlatform Include="windows" />
+		<SupportedPlatform Include="ios" />
+		<SupportedPlatform Include="android" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.18" />
+
+		<PackageReference Include="Syncfusion.Blazor.Buttons" Version="30.1.42" />
+		<PackageReference Include="Syncfusion.Blazor.Calendars" Version="30.1.42" />
+		<PackageReference Include="Syncfusion.Blazor.DropDowns" Version="30.1.42" />
+		<PackageReference Include="Syncfusion.Blazor.Grid" Version="30.1.42" />
+		<PackageReference Include="Syncfusion.Blazor.Inputs" Version="30.1.42" />
+		<PackageReference Include="Syncfusion.Blazor.Navigations" Version="30.1.42" />
+		<PackageReference Include="Syncfusion.Blazor.SplitButtons" Version="30.1.42" />
+		<PackageReference Include="Syncfusion.Blazor.Themes" Version="30.1.42" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Orbyss.Blazor.JsonForms\src\Orbyss.Components.JsonForms.csproj" />	  
+	</ItemGroup>
+
+</Project>

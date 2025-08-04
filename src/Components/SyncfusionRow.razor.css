@@ -1,0 +1,31 @@
+﻿.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 0.5rem 0;
+}
+
+    /* Modifier classes for alignment */
+    .form-row.align-left {
+        justify-content: flex-start;
+    }
+
+    .form-row.align-center {
+        justify-content: center;
+    }
+
+    .form-row.align-right {
+        justify-content: flex-end;
+    }
+
+    .form-row.align-space-between {
+        justify-content: space-between;
+    }
+
+    .form-row.align-space-around {
+        justify-content: space-around;
+    }
+
+    .form-row.align-space-evenly {
+        justify-content: space-evenly;
+    }

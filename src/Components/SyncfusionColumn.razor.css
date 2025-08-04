@@ -1,0 +1,8 @@
+﻿.form-column {
+    flex: 1 1 30%;
+    min-width: 250px;
+}
+
+.form-fixed-column {
+    flex: 0 0 auto;
+}

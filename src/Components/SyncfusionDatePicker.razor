@@ -1,0 +1,25 @@
+﻿@inherits SyncfusionFormComponentBase
+@typeparam TDate
+
+<SfDatePicker ID="@id"
+              Value=@value
+              TValue="DateTime?"
+              AllowEdit=@AllowManualInput
+              CssClass="@FullClass"
+              ValueChanged="OnChanged"
+              Placeholder="@Label"
+              ShowClearButton=true
+              Readonly=@ReadOnly
+              Enabled=@(!Disabled)
+              FloatLabelType="FloatLabelType.Always"
+              Min="@(MinimumDate ?? DateTime.MinValue)"
+              Max="@(MaximumDate ?? DateTime.MaxValue)" />
+
+@if (HasError)
+{
+    <div class="e-error validation-message">@ErrorHelperText</div>
+}
+else if (!string.IsNullOrWhiteSpace(HelperText))
+{
+    <div class="validation-message "><i>@HelperText</i></div>
+}

@@ -1,0 +1,23 @@
+﻿@inherits SyncfusionFormComponentBase
+
+<SfNumericTextBox TValue="int?"
+                  CssClass="@FullClass"
+                  Enabled=@(!Disabled)
+                  Readonly=ReadOnly
+                  Placeholder="@Label"
+                  Value="@Value"
+                  FloatLabelType="FloatLabelType.Always"
+                  ID="@id"
+                  ValueChanged="@ValueChanged"
+                  ShowClearButton=@Clearable
+                  Width="@Width" />
+
+
+@if (HasError)
+{
+    <div class="e-error validation-message">@ErrorHelperText</div>
+}
+else if (!string.IsNullOrWhiteSpace(HelperText))
+{
+    <div class="validation-message "><i>@HelperText</i></div>
+}

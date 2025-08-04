@@ -1,0 +1,19 @@
+﻿@inherits SyncfusionFormComponentBase
+
+<SfCheckBox TChecked="bool"
+            Checked="@Value"
+            CheckedChanged="OnValueChanged"
+            Disabled=@(Disabled || ReadOnly)
+            CssClass="@FullClass"
+            Indeterminate=false
+            Label="@Label"
+            LabelPosition="@LabelPosition" />
+
+@if (HasError)
+{
+    <div class="e-error validation-message">@ErrorHelperText</div>
+}
+else if (!string.IsNullOrWhiteSpace(HelperText))
+{
+    <div class="validation-message "><i>@HelperText</i></div>
+}

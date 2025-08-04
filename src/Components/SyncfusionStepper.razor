@@ -1,0 +1,206 @@
+﻿@inherits FormComponentBase
+
+@if (context is not null)
+{
+    <SfStepper StepChanging="@HandleStepChanging" Linear=false Orientation="@Orientation" LabelPosition="@LabelPosition">
+        <StepperSteps>
+            @if (lastStep > 0)
+            {
+                foreach (var step in context.Steps)
+                {
+                    if (!FormContext.GetPage(step.Index).Hidden)
+                    {
+                        <StepperStep Disabled=@FormContext.GetPage(step.Index).Disabled IsValid="@step.IsValid" Text="@(step.Index.ToString())" Label="@(FormContext.GetLabel(step.PageId))" Status="@step.Status">
+                        </StepperStep>
+                    }
+                }
+            }
+        </StepperSteps>
+        @if (AnimationSettings is not null)
+        {
+            <StepperAnimationSettings Enable=@AnimationSettings.Enable Delay="@AnimationSettings.Delay" Duration="@AnimationSettings.Duration" />
+        }
+    </SfStepper>
+    <br />
+
+    @if (lastStep > 0)
+    {
+        <SyncfusionGrid MaximumHeight="@MaximumHeight" MinimumHeight="@MinimumHeight">
+            @foreach (var context in GetCurrentPageElements())
+            {
+                <FormElementSelector Context="@context" @key=context.Id />
+            }
+        </SyncfusionGrid>
+
+        <SyncfusionGrid>
+            <SyncfusionRow Class="@(currentStep == 0 ? "align-right" : "align-space-between")">
+                @if (currentStep > 0)
+                {
+                    <SyncfusionColumn Class="form-fixed-column">
+                        <DynamicComponent Type="@(previousButton.ComponentType)" Parameters="@(GetPreviousButtonParameters())" />
+                    </SyncfusionColumn>
+                }
+                @if (currentStep == lastStep)
+                {
+                    <SyncfusionColumn Class="form-fixed-column">
+                        <DynamicComponent Type="@(submitButton.ComponentType)" Parameters="@(GetSubmitButtonParameters())" />
+                    </SyncfusionColumn>
+                }
+                else
+                {
+                    <SyncfusionColumn Class="form-fixed-column">
+                        <DynamicComponent Type="@(nextButton.ComponentType)" Parameters="@(GetNextButtonParameters())" />
+                    </SyncfusionColumn>
+                }
+
+            </SyncfusionRow>
+        </SyncfusionGrid>
+    }
+}
+
+@code {
+    private readonly Guid componentId = Guid.NewGuid();
+    private int currentStep = 0;
+    private int lastStep;
+
+    private SfStepper stepper = default!;
+
+    private IFormComponentInstance gridInstance = default!;
+    private ButtonFormComponentInstanceBase submitButton = default!;
+    private ButtonFormComponentInstanceBase nextButton = default!;
+    private ButtonFormComponentInstanceBase previousButton = default!;
+
+    [CascadingParameter]
+    public IFormComponentInstanceProvider ComponentInstanceProvider { get; set; } = default!;
+
+    [Parameter]
+    public EventCallback OnSubmitClicked { get; set; }
+
+    [Parameter]
+    public SyncfusionStepperAnimationSettings? AnimationSettings { get; set; }
+
+    [Parameter]
+    public StepperOrientation Orientation { get; set; }
+
+    [Parameter]
+    public StepperLabelPosition LabelPosition { get; set; }
+
+    [Parameter]
+    public string? MinimumHeight { get; set; }
+
+    [Parameter]
+    public string? MaximumHeight { get; set; }
+
+    private StepperContext? context;
+
+    private async Task Submit()
+    {
+        var lastStepContext = context!.Steps[lastStep];
+        var lastPage = FormContext.GetPage(lastStep);
+        var isValid = FormContext.Validate(lastPage.Id);
+        if (!isValid)
+        {
+            return;
+        }
+
+        lastStepContext.Status = StepperStatus.Completed;
+        lastStepContext.IsValid = true;
+        submitButton.Disabled = true;
+
+        await OnSubmitClicked.InvokeAsync();
+    }
+
+    IFormElementContext[] GetCurrentPageElements()
+    {
+        var page = FormContext.GetPage(currentStep);
+        return page.ElementContexts;
+    }
+
+    private async Task HandleStepChanging(StepperChangeEventArgs args)
+    {
+        var previousStep = context!.Steps[args.PreviousStep];
+        var activeStep = context!.Steps[args.ActiveStep];
+
+        if (args.ActiveStep < args.PreviousStep)
+        {
+            currentStep--;
+        }
+        else if (args.ActiveStep != args.PreviousStep)
+        {
+            var page = FormContext.GetPage(args.PreviousStep);
+            var isValid = FormContext.Validate(page.Id);
+            previousStep.IsValid = isValid;
+            previousStep.Status = isValid ? StepperStatus.Completed : StepperStatus.InProgress;
+
+
+            if (previousStep.IsValid == true)
+            {
+                if (args.PreviousStep < args.ActiveStep)
+                {
+                    activeStep.Status = StepperStatus.InProgress;
+
+                    currentStep++;
+                }
+                else
+                    currentStep--;
+            }
+            else
+            {
+                args.Cancel = true;
+            }
+        }
+
+        await InvokeAsync(StateHasChanged);
+    }
+
+    IDictionary<string, object?> GetSubmitButtonParameters()
+    {
+        var result = submitButton.GetParameters();
+        result[nameof(SyncfusionButton.OnClicked)] = new EventCallback(this, Submit);
+        return result;
+    }
+
+
+
+    IDictionary<string, object?> GetNextButtonParameters()
+    {
+        var result = nextButton.GetParameters();
+        result[nameof(SyncfusionButton.OnClicked)] = new EventCallback(this, stepper.NextStepAsync);
+        return result;
+    }
+
+    IDictionary<string, object?> GetPreviousButtonParameters()
+    {
+        var result = previousButton.GetParameters();
+        result[nameof(SyncfusionButton.OnClicked)] = new EventCallback(this, stepper.PreviousStepAsync);
+        return result;
+    }
+
+    protected override void OnInitialized()
+    {
+        SubscribeOnLanguageChanged(() => InvokeAsync(StateHasChanged));
+        SubscribeOnDataChanged(() => InvokeAsync(StateHasChanged));
+
+        gridInstance = ComponentInstanceProvider.GetGrid(FormContext, null);
+        submitButton = ComponentInstanceProvider.GetButton(FormButtonType.Submit, FormContext);
+        nextButton = ComponentInstanceProvider.GetButton(FormButtonType.Next, FormContext);
+        previousButton = ComponentInstanceProvider.GetButton(FormButtonType.Previous, FormContext);
+
+        var steps = FormContext
+            .GetPages()
+            .Select((p, index) =>
+            {
+                return new StepContext(index, p.Id)
+                {
+                    Status = index == 0 ? StepperStatus.InProgress : StepperStatus.NotStarted
+                };
+            })
+            .ToArray();
+
+        this.context = new(steps);
+
+        lastStep = FormContext.GetPages().Count() - 1;
+
+        base.OnInitialized();
+    }
+}

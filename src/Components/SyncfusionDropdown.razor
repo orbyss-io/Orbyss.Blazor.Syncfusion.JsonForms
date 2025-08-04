@@ -1,0 +1,29 @@
+﻿@inherits SyncfusionFormComponentBase
+
+<SfDropDownList TValue="string"
+                ID="@id"
+                TItem="TranslatedEnumItem"
+                DataSource=@Items
+                CssClass="@FullClass"
+                Value="@Value"
+                Width="@Width"
+                Placeholder="@Label"
+                ShowClearButton=@Clearable
+                AllowFiltering=@Searchable
+                FilterType="FilterType.Contains"
+                Enabled=@(!Disabled)
+                Readonly=@ReadOnly
+                FloatLabelType="FloatLabelType.Always"
+                ValueChanged="ValueChanged">
+
+    <DropDownListFieldSettings Value="@(nameof(TranslatedEnumItem.Value))" Text="@(nameof(TranslatedEnumItem.Label))" />
+</SfDropDownList>
+
+@if (HasError)
+{
+    <div class="e-error validation-message">@ErrorHelperText</div>
+}
+else if (!string.IsNullOrWhiteSpace(HelperText))
+{
+    <div class="validation-message "><i>@HelperText</i></div>
+}

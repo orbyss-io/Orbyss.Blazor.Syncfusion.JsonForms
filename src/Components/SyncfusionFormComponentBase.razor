@@ -1,0 +1,31 @@
+﻿
+
+@code {
+    [Parameter]
+    public string? Class { get; set; }
+
+    [Parameter]
+    public string? ErrorHelperText { get; set; }
+
+    protected bool HasError => !string.IsNullOrWhiteSpace(ErrorHelperText);
+
+    protected string? FullClass { get; private set; }
+
+    protected override void OnParametersSet()
+    {
+        var cssClasses = Class?.Split(' ')?.ToList() ?? [];
+        cssClasses.Add("e-control");
+
+        if (HasError)
+        {
+            cssClasses.AddRange(
+                [
+                    "e-invalid",
+                    "e-error"
+                ]
+            );
+        }
+
+        FullClass = string.Join(' ', cssClasses.Distinct());
+    }
+}

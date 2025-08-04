@@ -1,0 +1,22 @@
+﻿@if (!string.IsNullOrWhiteSpace(Label))
+{
+    <label for="@id" style="@LabelInlineStyle">@Label</label>
+}
+
+<SfSwitch HtmlAttributes=@htmlAttributes
+          Checked="@Value"
+          CssClass="@Class"
+          TChecked="bool"
+          CheckedChanged="OnValueChanged"
+          Disabled=@(Disabled || ReadOnly)
+          OffLabel="@OffLabel"
+          OnLabel="@OnLabel" />
+
+@if (HasError)
+{
+    <div class="e-error validation-message">@ErrorHelperText</div>
+}
+else if (!string.IsNullOrWhiteSpace(HelperText))
+{
+    <div class="validation-message "><i>@HelperText</i></div>
+}

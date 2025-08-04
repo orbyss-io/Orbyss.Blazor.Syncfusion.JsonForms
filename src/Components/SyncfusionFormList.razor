@@ -1,0 +1,25 @@
+﻿<SyncfusionGrid Class="mt-2">
+    @if (!string.IsNullOrWhiteSpace(Title))
+    {
+        <SyncfusionRow Class="align-space-between">
+            <p class="text-start">@Title</p>
+            @if (!ReadOnly)
+            {               
+                <SyncfusionButton Class="@($"{Constants.SyncfusionButtonCss.Round} {Constants.SyncfusionButtonCss.Success}")"
+                                    OnClicked="@OnAddClicked"
+                                    IconClass="@Constants.SyncfusionButtonIconsCss.Plus" />                
+            }
+        </SyncfusionRow>
+
+        @if (!string.IsNullOrWhiteSpace(Error))
+        {
+            <SyncfusionRow Class="align-left">                
+                    <SfIcon Name="IconName.Warning" IconCss="warning-icon warning-icon-danger"></SfIcon>
+                    <p class="text-start" style="color:#cc0000"><i>@Error</i></p>                
+            </SyncfusionRow>
+        }
+    }
+
+    @ChildContent
+
+</SyncfusionGrid>
