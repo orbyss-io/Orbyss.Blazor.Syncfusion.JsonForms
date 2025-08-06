@@ -3,6 +3,8 @@
 **A full-featured Syncfusion-based UI renderer for [Orbyss.Blazor.JsonForms](https://github.com/orbyss-io/Orbyss.Blazor.JsonForms).**  
 This package brings the power of Syncfusion Blazor components to schema-driven forms using JSON Schema, UI Schema, and Translation Schema.
 
+![NuGet](https://img.shields.io/nuget/v/Orbyss.Blazor.Syncfusion.JsonForms)
+![NuGet Downloads](https://img.shields.io/nuget/dt/Orbyss.Blazor.Syncfusion.JsonForms)
 ---
 
 ## 🎯 What is this?
