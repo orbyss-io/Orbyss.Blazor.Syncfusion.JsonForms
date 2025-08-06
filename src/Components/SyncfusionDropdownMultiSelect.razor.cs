@@ -34,7 +34,7 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms.Components
             }
         }
 
-        Task ChangeSelectedValues(List<string> selectedValues)
+        private Task ChangeSelectedValues(List<string> selectedValues)
         {
             lock (valuesLock)
             {

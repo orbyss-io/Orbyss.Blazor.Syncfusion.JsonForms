@@ -10,7 +10,7 @@
         /// <summary>
         /// Positive or confirm action button
         /// </summary>
-        public const string Success = "e-success";                
+        public const string Success = "e-success";
 
         /// <summary>
         /// Informational button

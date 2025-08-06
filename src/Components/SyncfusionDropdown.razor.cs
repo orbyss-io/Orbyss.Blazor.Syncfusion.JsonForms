@@ -6,9 +6,10 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms.Components
     public partial class SyncfusionDropdown
     {
         private readonly string id = $"{Guid.NewGuid()}";
-        
+
         protected override void OnInitialized()
         {
+            var hasDelegate = OnValueChanged.HasDelegate;
             if (Items?.All(x => string.IsNullOrWhiteSpace(x.Value) && string.IsNullOrWhiteSpace(x.Label)) == true)
             {
                 HelperText = "There are no items to select for this dropdown";
@@ -27,13 +28,12 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms.Components
             }
         }
 
-        async Task ChangeValue(string selectedValue)
+        private async Task ChangeValue(string selectedValue)
         {
             Value = selectedValue;
 
-            await ValueChanged.InvokeAsync(Value);
+            await OnValueChanged.InvokeAsync(Value);
         }
-
 
         [Parameter]
         public string? Label { get; set; }
@@ -60,7 +60,7 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms.Components
         public IEnumerable<TranslatedEnumItem> Items { get; set; } = Array.Empty<TranslatedEnumItem>();
 
         [Parameter]
-        public EventCallback<string> ValueChanged { get; set; }
+        public EventCallback<string> OnValueChanged { get; set; }
 
         [Parameter]
         public bool ReadOnly { get; set; }

@@ -25,7 +25,7 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms.Components
         public string? HelperText { get; set; }
 
         [Parameter]
-        public EventCallback<int?> ValueChanged { get; set; }
+        public EventCallback<int?> OnValueChanged { get; set; }
 
         [Parameter]
         public string? Width { get; set; }

@@ -2,7 +2,7 @@
 
 <SfCheckBox TChecked="bool"
             Checked="@Value"
-            CheckedChanged="OnValueChanged"
+            CheckedChanged="@OnValueChanged"
             Disabled=@(Disabled || ReadOnly)
             CssClass="@FullClass"
             Indeterminate=false

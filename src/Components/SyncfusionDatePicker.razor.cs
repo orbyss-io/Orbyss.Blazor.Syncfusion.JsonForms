@@ -2,7 +2,7 @@
 
 namespace Orbyss.Blazor.Syncfusion.JsonForms.Components
 {
-    public partial class SyncfusionDatePicker<TDate>        
+    public partial class SyncfusionDatePicker<TDate>
     {
         private readonly string id = $"{Guid.NewGuid()}";
         private DateTime? value;
@@ -48,8 +48,8 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms.Components
             }
 
             if (!value.HasValue || ConvertToDateTime is null)
-            {                
-                return OnValueChanged.InvokeAsync(default);               
+            {
+                return OnValueChanged.InvokeAsync(default);
             }
 
             return OnValueChanged.InvokeAsync(
@@ -59,7 +59,7 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms.Components
 
         protected override void OnParametersSet()
         {
-            if(ConvertFromDateTime is null)
+            if (ConvertFromDateTime is null)
             {
                 value = null;
             }

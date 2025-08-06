@@ -1,4 +1,4 @@
-﻿using Orbyss.Components.JsonForms.ComponentInstances;
+﻿using Orbyss.Blazor.JsonForms.ComponentInstances;
 using Orbyss.Blazor.Syncfusion.JsonForms.Components;
 using Syncfusion.Blazor.Buttons;
 
@@ -23,7 +23,7 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms.ComponentInstances
         protected override IDictionary<string, object?> GetButtonParameters()
         {
             return new Dictionary<string, object?>
-            {                
+            {
                 [nameof(SyncfusionButton.IconClass)] = IconClass,
                 [nameof(SyncfusionButton.IconPosition)] = IconPosition,
                 [nameof(SyncfusionButton.CanToggle)] = CanToggle

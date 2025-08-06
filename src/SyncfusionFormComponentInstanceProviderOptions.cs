@@ -1,32 +1,41 @@
-﻿using Orbyss.Components.Json.Models;
-using Orbyss.Components.JsonForms.ComponentInstances;
-using Orbyss.Components.JsonForms.Context.Interfaces;
-using Orbyss.Components.JsonForms.Context.Models;
+﻿using Orbyss.Blazor.JsonForms;
+using Orbyss.Blazor.JsonForms.ComponentInstances;
+using Orbyss.Blazor.JsonForms.Context.Interfaces;
+using Orbyss.Blazor.JsonForms.Context.Models;
 using Orbyss.Blazor.Syncfusion.JsonForms.ComponentInstances;
 using Orbyss.Blazor.Syncfusion.JsonForms.Components;
-using Orbyss.Components.JsonForms;
+using Orbyss.Components.Json.Models;
 
 namespace Orbyss.Blazor.Syncfusion.JsonForms
 {
     public sealed class SyncfusionFormComponentInstanceProviderOptions
     {
         public delegate ButtonFormComponentInstance ConfigureButtonDelegate(SyncfusionButtonInstance defaultButton, FormButtonType type, IJsonFormContext? form);
+
         public delegate FormComponentInstance ConfigureGridDelegate(SyncfusionGridInstance defaultGrid, IJsonFormContext? form, FormPageContext? page);
+
         public delegate FormComponentInstance ConfigureColumnDelegate(FormComponentInstance<SyncfusionColumn> defaultColumn, IFormElementContext? column);
+
         public delegate FormComponentInstance ConfigureRowDelegate(SyncfusionRowInstance defaultRow, IFormElementContext? row);
 
         public delegate InputFormComponentInstance ConfigureTextInputDelegate(SyncfusionTextInputInstance defaultInput, FormControlContext control);
+
         public delegate InputFormComponentInstance ConfigureNumberInputDelegate(SyncfusionNumberInputInstance defaultInput, FormControlContext control);
+
         public delegate InputFormComponentInstance ConfigureIntegerInputDelegate(SyncfusionIntegerInputInstance defaultInput, FormControlContext control);
 
         public delegate InputFormComponentInstance ConfigureDropdownInputDelegate(SyncfusionDropdownInstance defaultInput, FormControlContext control);
+
         public delegate InputFormComponentInstance ConfigureMultiDropdownInputDelegate(SyncfusionDropdownMultiSelectInstance defaultInput, FormControlContext control);
 
         public delegate InputFormComponentInstance ConfigureDateInputDelegate<TDate>(DateInputFormComponentInstance<TDate> defaultInput, FormControlContext control);
+
         public delegate InputFormComponentInstance ConfigureBooleanInputDelegate(SyncfusionCheckboxInstance defaultInput, FormControlContext control);
 
         public delegate ListFormComponentInstance ConfigureListDelegate(ListFormComponentInstance defaultList, FormListContext? list);
+
         public delegate ListItemFormComponentInstance ConfigureListItemDelegate(ListItemFormComponentInstance defaultList, IFormElementContext? listItem);
+
         public delegate NavigationFormComponentInstance ConfigureNavigationDelegate(SyncfusionStepperInstance defaultNavigation, IJsonFormContext formContext);
 
         public FormType FormType { get; set; } = FormType.Submit;

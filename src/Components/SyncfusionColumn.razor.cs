@@ -10,7 +10,7 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms.Components
         [Parameter]
         public RenderFragment? ChildContent { get; set; }
 
-        string? FullClass;
+        private string? FullClass;
 
         protected override void OnParametersSet()
         {

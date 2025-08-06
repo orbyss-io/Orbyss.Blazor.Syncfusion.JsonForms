@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
-using Orbyss.Components.JsonForms.ComponentInstances;
+using Orbyss.Blazor.JsonForms.ComponentInstances;
 using Orbyss.Blazor.Syncfusion.JsonForms.Components;
-using Syncfusion.Blazor.Inputs;
 
 namespace Orbyss.Blazor.Syncfusion.JsonForms.ComponentInstances
 {
@@ -15,7 +14,7 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms.ComponentInstances
 
         protected override object? ConvertValue(JToken? value)
         {
-            if(double.TryParse($"{value}", Culture, out var doubleValue))
+            if (double.TryParse($"{value}", Culture, out var doubleValue))
             {
                 return doubleValue;
             }

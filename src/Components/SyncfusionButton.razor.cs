@@ -29,7 +29,7 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms.Components
         [Parameter]
         public EventCallback OnClicked { get; set; }
 
-        readonly Dictionary<string, object> customAttributes = [];
+        private readonly Dictionary<string, object> customAttributes = [];
 
         protected override void OnInitialized()
         {

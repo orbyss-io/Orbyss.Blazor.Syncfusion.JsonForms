@@ -1,4 +1,4 @@
-﻿using Orbyss.Components.JsonForms.ComponentInstances;
+﻿using Orbyss.Blazor.JsonForms.ComponentInstances;
 using Orbyss.Blazor.Syncfusion.JsonForms.Components;
 
 namespace Orbyss.Blazor.Syncfusion.JsonForms.ComponentInstances
@@ -10,7 +10,7 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms.ComponentInstances
         }
 
         public string? Width { get; set; }
-        
+
         public bool Clearable { get; set; }
 
         protected override IDictionary<string, object?> GetFormInputParameters()

@@ -22,8 +22,8 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms.Components
         [Parameter]
         public bool NotFluid { get; set; }
 
-        string? FullClass;
-        string? FullStyle;
+        private string? FullClass;
+        private string? FullStyle;
 
         protected override void OnParametersSet()
         {

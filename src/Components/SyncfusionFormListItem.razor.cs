@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Orbyss.Components.JsonForms.Context.Interfaces;
+using Orbyss.Blazor.JsonForms.Context.Interfaces;
 
 namespace Orbyss.Blazor.Syncfusion.JsonForms.Components
 {

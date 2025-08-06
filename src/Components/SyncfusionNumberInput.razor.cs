@@ -1,10 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Orbyss.Blazor.Syncfusion.JsonForms.Components
 {
@@ -39,7 +34,7 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms.Components
         [Parameter]
         public string? Width { get; set; }
 
-        private Task ValueChangedHandler(string? value)
+        private Task OnValueChangedHandler(string? value)
         {
             if (double.TryParse(value, Culture, out var doubleValue))
             {

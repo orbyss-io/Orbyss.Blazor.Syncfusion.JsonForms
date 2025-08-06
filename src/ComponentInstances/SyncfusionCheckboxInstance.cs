@@ -1,4 +1,4 @@
-﻿using Orbyss.Components.JsonForms.ComponentInstances;
+﻿using Orbyss.Blazor.JsonForms.ComponentInstances;
 using Orbyss.Blazor.Syncfusion.JsonForms.Components;
 using Syncfusion.Blazor.Buttons;
 
@@ -7,7 +7,7 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms.ComponentInstances
     public class SyncfusionCheckboxInstance : InputFormComponentInstance<SyncfusionCheckbox>
     {
         public SyncfusionCheckboxInstance() : base(t => (bool?)t)
-        {            
+        {
         }
 
         public bool Clearable { get; set; }

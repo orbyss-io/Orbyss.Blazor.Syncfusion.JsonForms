@@ -1,4 +1,4 @@
-﻿using Orbyss.Components.JsonForms.ComponentInstances;
+﻿using Orbyss.Blazor.JsonForms.ComponentInstances;
 using Orbyss.Blazor.Syncfusion.JsonForms.Components;
 using Syncfusion.Blazor.Navigations;
 
