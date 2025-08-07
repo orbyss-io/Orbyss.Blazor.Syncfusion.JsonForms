@@ -1,0 +1,85 @@
+name: Publish to NuGet
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # e.g., v1.2.0
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build solution
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Run unit tests
+        run: dotnet test ./tests --no-build --configuration Release --verbosity normal
+
+  publish:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.set-version.outputs.version }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build solution
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Extract version from tag
+        id: set-version
+        run: |
+          VERSION="${GITHUB_REF#refs/tags/v}"
+          echo "Using version: $VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Pack NuGet packages
+        run: |
+          VERSION=${{ steps.set-version.outputs.version }}
+          dotnet pack src/${{ github.event.repository.name }}.csproj \
+            --configuration Release \
+            --no-build \
+            --skip-duplicate \
+            -p:PackageVersion=$VERSION \
+            -p:IncludeSymbols=true \
+            -p:SymbolPackageFormat=snupkg
+
+      - name: Show packed files
+        run: ls -lh src/bin/Release
+
+      - name: Push NuGet packages
+        run: |
+          for pkg in $(find src/bin/Release -name "*.nupkg" ! -name "*.symbols.nupkg" ! -name "*.snupkg"); do
+            echo "Pushing main package: $pkg"
+            dotnet nuget push "$pkg" \
+              --api-key "${{ secrets.NUGET_API_KEY }}" \
+              --source https://api.nuget.org/v3/index.json
+          done
+
+          for symbols in $(find src/bin/Release -name "*.snupkg"); do
+            echo "Pushing symbol package: $symbols"
+            dotnet nuget push "$symbols" \
+              --api-key "${{ secrets.NUGET_API_KEY }}" \
+              --source https://api.nuget.org/v3/index.json
+          done

@@ -172,9 +172,9 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms
                 ControlType.Enum => GetDropDownField(control),
                 ControlType.EnumList => GetMultiDropDownField(control),
                 ControlType.DateTime => GetDateTimeField(control),
+                ControlType.DateTimeUtcTicks => GetDateTimeUtcTicksField(control),
                 ControlType.DateOnly => GetDateOnlyField(control),
                 ControlType.DateOnlyUtcTicks => GetDateUtcTicksField(control),
-                ControlType.DateTimeUtcTicks => GetDateTimeUtcTicksField(control),
 
                 ControlType.Integer => GetIntegerField(control),
                 ControlType.Number => GetNumberField(control),
@@ -209,8 +209,8 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms
             {
                 AnimationSettings = new SyncfusionStepperAnimationSettings
                 {
-                    Delay = 200,
-                    Duration = 1500,
+                    Delay = 1000,
+                    Duration = 5000,
                     Enable = true
                 },
                 MinimumHeight = "12rem"
@@ -267,7 +267,7 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms
 
         protected virtual InputFormComponentInstanceBase GetDateTimeField(FormControlContext control)
         {
-            var result = new DateTimeInputFormComponentInstance(typeof(SyncfusionDatePicker<>));
+            var result = new DateTimeInputFormComponentInstance(typeof(SyncfusionDateTimePicker<>));
 
             if (options?.ConfigureDateTimeInput is not null)
             {
@@ -289,7 +289,7 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms
 
         protected virtual InputFormComponentInstanceBase GetDateTimeUtcTicksField(FormControlContext control)
         {
-            var result = new DateTimeUtcTicksInputFormComponentInstance(typeof(SyncfusionDatePicker<>));
+            var result = new DateTimeUtcTicksInputFormComponentInstance(typeof(SyncfusionDateTimePicker<>));
 
             if (options?.ConfigureDateTimeUtcTicksInput is not null)
             {
@@ -300,7 +300,7 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms
 
         protected virtual InputFormComponentInstanceBase GetDateUtcTicksField(FormControlContext control)
         {
-            var result = new DateUtcTicksInputFormComponentInstance(typeof(SyncfusionDatePicker<>));
+            var result = new DateOnlyUtcTicksInputFormComponentInstance(typeof(SyncfusionDatePicker<>));
 
             if (options?.ConfigureDateUtcTicksInput is not null)
             {

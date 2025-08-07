@@ -1,8 +1,10 @@
 ﻿@inherits FormComponentBase
 
+@namespace Orbyss.SyncFusion.Blazor.JsonForms.Components
+
 @if (context is not null)
 {
-    <SfStepper StepChanging="@HandleStepChanging" Linear=false Orientation="@Orientation" LabelPosition="@LabelPosition">
+    <SfStepper @ref=stepper StepChanging="@HandleStepChanging" Linear=false Orientation="@Orientation" LabelPosition="@LabelPosition">
         <StepperSteps>
             @if (lastStep > 0)
             {

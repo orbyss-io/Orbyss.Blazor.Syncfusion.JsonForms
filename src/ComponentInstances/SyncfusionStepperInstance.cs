@@ -1,5 +1,5 @@
 ﻿using Orbyss.Blazor.JsonForms.ComponentInstances;
-using Orbyss.Blazor.Syncfusion.JsonForms.Components;
+using Orbyss.SyncFusion.Blazor.JsonForms.Components;
 using Syncfusion.Blazor.Navigations;
 
 namespace Orbyss.Blazor.Syncfusion.JsonForms.ComponentInstances

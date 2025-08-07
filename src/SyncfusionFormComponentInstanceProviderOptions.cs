@@ -28,7 +28,7 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms
 
         public delegate InputFormComponentInstance ConfigureMultiDropdownInputDelegate(SyncfusionDropdownMultiSelectInstance defaultInput, FormControlContext control);
 
-        public delegate InputFormComponentInstance ConfigureDateInputDelegate<TDate>(DateInputFormComponentInstance<TDate> defaultInput, FormControlContext control);
+        public delegate InputFormComponentInstance ConfigureDateInputDelegate<TDate>(DateOnlyInputFormComponentInstanceBase<TDate> defaultInput, FormControlContext control);
 
         public delegate InputFormComponentInstance ConfigureBooleanInputDelegate(SyncfusionCheckboxInstance defaultInput, FormControlContext control);
 

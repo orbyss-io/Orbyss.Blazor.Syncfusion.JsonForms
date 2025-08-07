@@ -135,11 +135,21 @@ MIT License
 
 ---
 
+
 ## 🤝 Contributing
 
-We're happy to accept contributions, ideas, or improvements.  
-Fork the repo, create a feature branch, and open a PR — no formal process required.
+This project is open source and contributions are welcome!
+
+Whether it's bug fixes, improvements, documentation, or ideas — we encourage developers to get involved.  
+Just fork the repo, create a branch, and open a pull request.
+
+We follow standard .NET open-source conventions:
+- Write clean, readable code
+- Keep PRs focused and descriptive
+- Open issues for larger features or discussions
+
+No formal contribution guidelines — just be constructive and respectful.
 
 ---
 
-⭐️ Found this useful? [Give us a star](https://github.com/orbyss-io/Orbyss.Blazor.Syncfusion.JsonForms) and help spread the word!
+⭐️ Found this useful? [Give us a star](https://github.com/orbyss-io/Orbyss.Blazor.Syncfusion.JsonForms/stargazers) and help spread the word!

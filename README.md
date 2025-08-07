@@ -104,7 +104,7 @@ Like all Orbyss JSON Forms integrations, this renderer works using:
 | Schema              | Purpose                                             |
 |---------------------|-----------------------------------------------------|
 | **JSON Schema**     | Defines data structure (types, constraints, etc.)   |
-| **UI Schema**       | Controls layout and per-control options             |
+| **UI Schema**       | Controls layout and per-control options, [rules](https://jsonforms.io/docs/uischema/rules/)             |
 | **Translation Schema** | Manages localization, labels, error messages    |
 
 All schema interactions are fully supported.
@@ -137,11 +137,21 @@ MIT License
 
 ---
 
+
 ## 🤝 Contributing
 
-We're happy to accept contributions, ideas, or improvements.  
-Fork the repo, create a feature branch, and open a PR — no formal process required.
+This project is open source and contributions are welcome!
+
+Whether it's bug fixes, improvements, documentation, or ideas — we encourage developers to get involved.  
+Just fork the repo, create a branch, and open a pull request.
+
+We follow standard .NET open-source conventions:
+- Write clean, readable code
+- Keep PRs focused and descriptive
+- Open issues for larger features or discussions
+
+No formal contribution guidelines — just be constructive and respectful.
 
 ---
 
-⭐️ Found this useful? [Give us a star](https://github.com/orbyss-io/Orbyss.Blazor.Syncfusion.JsonForms) and help spread the word!
+⭐️ Found this useful? [Give us a star](https://github.com/orbyss-io/Orbyss.Blazor.Syncfusion.JsonForms/stargazers) and help spread the word!

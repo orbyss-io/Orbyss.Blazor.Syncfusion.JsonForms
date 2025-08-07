@@ -1,0 +1,31 @@
+﻿@using Orbyss.Blazor.JsonForms.Constants
+@inherits SyncfusionFormComponentBase
+@typeparam TDate
+
+<SfDateTimePicker ID="@id"
+                  Value=@value
+                  TValue="DateTime?"
+                  AllowEdit=true
+                  CssClass="@FullClass"
+                  ValueChanged="ValueChangedHandler"
+                  Placeholder="@Label"
+                  ShowClearButton=true
+                  Readonly=@ReadOnly
+                  Step=@(TimeStep ?? 15)
+                  Enabled=@(!Disabled)
+                  FloatLabelType="FloatLabelType.Always"
+                  OnChange="OnManualInputChanged"
+                  Min="@(MinimumDate ?? DateTime.MinValue)"
+                  Max="@(MaximumDate ?? DateTime.MaxValue)"
+                  MinTime="@(MinimumTime ?? DateTime.MinValue)"
+                  MaxTime="@(MaximumTime ?? DateTime.MaxValue)" />
+
+@if (HasError)
+{
+    <div class="e-error validation-message">@ErrorHelperText</div>
+}
+else if (!string.IsNullOrWhiteSpace(HelperText))
+{
+    <div class="validation-message "><i>@HelperText</i></div>
+}
+

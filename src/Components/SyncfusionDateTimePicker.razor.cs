@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Orbyss.Blazor.JsonForms.Constants;
 
 namespace Orbyss.Blazor.Syncfusion.JsonForms.Components
 {
-    public partial class SyncfusionDatePicker<TDate>
+    public partial class SyncfusionDateTimePicker<TDate>
     {
         private readonly string id = $"{Guid.NewGuid()}";
         private DateTime? value;
@@ -23,6 +24,15 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms.Components
         public DateTime? MaximumDate { get; set; }
 
         [Parameter]
+        public DateTime? MinimumTime { get; set; }
+
+        [Parameter]
+        public DateTime? MaximumTime { get; set; }
+
+        [Parameter]
+        public int? TimeStep { get; set; }
+
+        [Parameter]
         public bool ReadOnly { get; set; }
 
         [Parameter]
@@ -40,7 +50,23 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms.Components
         [Parameter]
         public Func<TDate, DateTime?>? ConvertToDateTime { get; set; }
 
-        private Task OnChanged(DateTime? value)
+        private Task OnManualInputChanged(ChangeEventArgs args)
+        {
+            if (!AllowManualInput)
+            {
+                return Task.CompletedTask;
+            }
+
+            var value = $"{args.Value}";
+            if (DateTime.TryParse(value, FormCulture.Instance, out var result))
+            {
+                return ValueChangedHandler(result);
+            }
+
+            return ValueChangedHandler(null);
+        }
+
+        private Task ValueChangedHandler(DateTime? value)
         {
             if (this.value.HasValue)
             {

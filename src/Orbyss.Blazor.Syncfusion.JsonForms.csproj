@@ -22,16 +22,13 @@
 	  <RepositoryUrl>https://github.com/orbyss-io/Orbyss.Blazor.Syncfusion.JsonForms</RepositoryUrl>
 	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
 	  <PackageProjectUrl>https://github.com/orbyss-io/Orbyss.Blazor.Syncfusion.JsonForms</PackageProjectUrl>
-	  <IncludeSymbols>true</IncludeSymbols>
-	  <IncludeSource>true</IncludeSource>
-	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
 	  <RepositoryType>git</RepositoryType>
 	  <PackageIcon>icon.png</PackageIcon>
 
-	  <ReleaseNotes>
+	  <PackageReleaseNotes>
 		  Initial release of the Syncfusion renderer for Orbyss.Blazor.JsonForms.
-	  </ReleaseNotes>
+	  </PackageReleaseNotes>
   </PropertyGroup>
 
 	<ItemGroup>
@@ -49,7 +46,7 @@
 
 	<ItemGroup>
 
-		<PackageReference Include="Orbyss.Blazor.JsonForms" Version="1.0.0" />
+		<PackageReference Include="Orbyss.Blazor.JsonForms" Version="1.0.2" />
 
 		<PackageReference Include="Syncfusion.Blazor.Buttons" Version="30.1.42" />
 		<PackageReference Include="Syncfusion.Blazor.Calendars" Version="30.1.42" />

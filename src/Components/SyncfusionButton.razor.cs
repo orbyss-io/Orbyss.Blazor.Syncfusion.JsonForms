@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using Syncfusion.Blazor.Buttons;
 
 namespace Orbyss.Blazor.Syncfusion.JsonForms.Components
@@ -28,6 +29,11 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms.Components
 
         [Parameter]
         public EventCallback OnClicked { get; set; }
+
+        private Task Click(MouseEventArgs args)
+        {
+            return OnClicked.InvokeAsync();
+        }
 
         private readonly Dictionary<string, object> customAttributes = [];
 
