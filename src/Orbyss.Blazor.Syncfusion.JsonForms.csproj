@@ -27,7 +27,11 @@
 	  <PackageIcon>icon.png</PackageIcon>
 
 	  <PackageReleaseNotes>
+		  **Release: 7 August, 2025**
+		  
 		  Initial release of the Syncfusion renderer for Orbyss.Blazor.JsonForms.
+		  I have done some major refactoring, and have not been able to test every component, and every use case. 
+		  Please let it be known if anything is not working, and I will fix it right away!
 	  </PackageReleaseNotes>
   </PropertyGroup>
 
