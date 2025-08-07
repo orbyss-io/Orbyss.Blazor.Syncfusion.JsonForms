@@ -18,19 +18,20 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms
 
         public delegate FormComponentInstance ConfigureRowDelegate(SyncfusionRowInstance defaultRow, IFormElementContext? row);
 
-        public delegate InputFormComponentInstance ConfigureTextInputDelegate(SyncfusionTextInputInstance defaultInput, FormControlContext control);
+        public delegate InputFormComponentInstanceBase ConfigureTextInputDelegate(SyncfusionTextInputInstance defaultInput, FormControlContext control);
 
-        public delegate InputFormComponentInstance ConfigureNumberInputDelegate(SyncfusionNumberInputInstance defaultInput, FormControlContext control);
+        public delegate InputFormComponentInstanceBase ConfigureNumberInputDelegate(SyncfusionNumberInputInstance defaultInput, FormControlContext control);
 
-        public delegate InputFormComponentInstance ConfigureIntegerInputDelegate(SyncfusionIntegerInputInstance defaultInput, FormControlContext control);
+        public delegate InputFormComponentInstanceBase ConfigureIntegerInputDelegate(SyncfusionIntegerInputInstance defaultInput, FormControlContext control);
 
-        public delegate InputFormComponentInstance ConfigureDropdownInputDelegate(SyncfusionDropdownInstance defaultInput, FormControlContext control);
+        public delegate InputFormComponentInstanceBase ConfigureDropdownInputDelegate(SyncfusionDropdownInstance defaultInput, FormControlContext control);
 
-        public delegate InputFormComponentInstance ConfigureMultiDropdownInputDelegate(SyncfusionDropdownMultiSelectInstance defaultInput, FormControlContext control);
+        public delegate InputFormComponentInstanceBase ConfigureMultiDropdownInputDelegate(SyncfusionDropdownMultiSelectInstance defaultInput, FormControlContext control);
 
-        public delegate InputFormComponentInstance ConfigureDateInputDelegate<TDate>(DateOnlyInputFormComponentInstanceBase<TDate> defaultInput, FormControlContext control);
+        public delegate InputFormComponentInstanceBase ConfigureDateInputDelegate<TDate>(DateOnlyInputFormComponentInstanceBase<TDate> defaultInput, FormControlContext control);
+        public delegate InputFormComponentInstanceBase ConfigureDateTimeInputDelegate<TDate>(DateTimeInputFormComponentInstanceBase<TDate> defaultInput, FormControlContext control);
 
-        public delegate InputFormComponentInstance ConfigureBooleanInputDelegate(SyncfusionCheckboxInstance defaultInput, FormControlContext control);
+        public delegate InputFormComponentInstanceBase ConfigureBooleanInputDelegate(SyncfusionCheckboxInstance defaultInput, FormControlContext control);
 
         public delegate ListFormComponentInstance ConfigureListDelegate(ListFormComponentInstance defaultList, FormListContext? list);
 
@@ -58,11 +59,11 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms
 
         public ConfigureMultiDropdownInputDelegate? ConfigureMultiDropdownInput { get; set; }
 
-        public ConfigureDateInputDelegate<DateTime?>? ConfigureDateTimeInput { get; set; }
+        public ConfigureDateTimeInputDelegate<DateTime?>? ConfigureDateTimeInput { get; set; }
 
         public ConfigureDateInputDelegate<DateOnly?>? ConfigureDateOnlyInput { get; set; }
 
-        public ConfigureDateInputDelegate<DateTimeUtcTicks?>? ConfigureDateTimeUtcTicksInput { get; set; }
+        public ConfigureDateTimeInputDelegate<DateTimeUtcTicks?>? ConfigureDateTimeUtcTicksInput { get; set; }
 
         public ConfigureDateInputDelegate<DateUtcTicks?>? ConfigureDateUtcTicksInput { get; set; }
 

@@ -1,0 +1,60 @@
+﻿@page "/"
+@using Newtonsoft.Json.Linq
+@using Orbyss.Blazor.JsonForms.Context.Models
+
+
+<h1>Syncfusion Json Form!</h1>
+
+<label for="languageselector">
+    Change language
+</label>
+<select id="languageselector" @bind="selectedLanguage">
+    <option value="">-- Select Language --</option>
+    @foreach (var lan in languages)
+    {
+        <option value="@lan">@lan</option>
+    }
+</select>
+
+@if (string.IsNullOrWhiteSpace(value))
+{
+    <CascadingValue Value="@selectedLanguage">
+
+        <JsonForm InitOptions="@options"
+                  OnSubmit="@OnSubmit" />
+
+    </CascadingValue>
+}
+else
+{
+    <p>Submitted form data:</p>
+    <p>@value</p>
+}
+
+@code {
+    string? value;
+
+    const string jsonSchema = "{\"$schema\":\"http://json-schema.org/draft-07/schema#\",\"type\":\"object\",\"required\":[\"name\",\"address\",\"status\",\"dateOfBirth\",\"requestedOn\"],\"properties\":{\"name\":{\"type\":\"string\"},\"dateOfBirth\":{\"type\":\"string\",\"format\":\"date\"},\"address\":{\"type\":\"object\",\"required\":[\"street\",\"number\"],\"properties\":{\"street\":{\"type\":\"string\",\"minLength\":5},\"number\":{\"type\":\"string\",\"maxLength\":5}}},\"requestedOn\":{\"type\":\"string\",\"format\":\"datetime\"},\"status\":{\"type\":\"string\",\"enum\":[\"Pending\",\"Approved\",\"Rejected\"]}}}";
+    const string uiSchema = "{\"type\":\"VerticalLayout\",\"elements\":[{\"type\":\"Control\",\"scope\":\"#/properties/name\"},{\"type\":\"Control\",\"scope\":\"#/properties/dateOfBirth\"},{\"type\":\"Control\",\"scope\":\"#/properties/address/properties/street\"},{\"type\":\"Control\",\"scope\":\"#/properties/address/properties/number\"},{\"type\":\"Control\",\"scope\":\"#/properties/status\"},{\"type\":\"Control\",\"scope\":\"#/properties/requestedOn\"}]}";
+    const string translationSchemaJson = "{\"resources\":{\"en\":{\"translation\":{\"name\":{\"label\":\"Name\"},\"dateOfBirth\":{\"label\":\"Date of birth\"},\"status\":{\"label\":\"Status\",\"Pending\":\"Pending\",\"Approved\":\"Approved\",\"Rejected\":\"Rejected\"},\"address\":{\"label\":\"Address\",\"street\":{\"label\":\"Street\",\"error\":{\"minimumLength\":\"Custom message: street must have more than 5 characters\"}},\"number\":{\"label\":\"Street number\",\"error\":{\"maximumLength\":\"Custom message: street number can have no more than 5 characters\"}}},\"requestedOn\":{\"label\":\"Requested on\"}}},\"nl\":{\"translation\":{\"name\":{\"label\":\"Naam\"},\"dateOfBirth\":{\"label\":\"Geboortedatum\"},\"status\":{\"label\":\"Status\",\"Pending\":\"In afwachting\",\"Approved\":\"Goedgekeurd\",\"Rejected\":\"Afgekeurd\"},\"address\":{\"label\":\"Adres\",\"street\":{\"label\":\"Straat\",\"error\":{\"minimumLength\":\"Custom bericht: Straat moet minimaal 5 karaketers bevatten\"}},\"number\":{\"label\":\"Straatnummer\",\"error\":{\"maximumLength\":\"Custom bericht: Straat nummer mag maximaal 5 karaketers bevatten\"}}},\"requestedOn\":{\"label\":\"Aangevraag op\"}}}}}";
+
+    private static readonly JsonFormContextInitOptions options = new(jsonSchema, uiSchema, translationSchemaJson);
+
+    string? selectedLanguage = "";
+    string[] languages =
+    [
+        "nl",
+        "en"
+    ];
+
+    Task OnSubmit(JToken value)
+    {
+        this.value = $"{value}";
+        return InvokeAsync(StateHasChanged);
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+}

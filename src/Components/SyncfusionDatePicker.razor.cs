@@ -72,6 +72,8 @@ namespace Orbyss.Blazor.Syncfusion.JsonForms.Components
             {
                 value = ConvertToDateTime(Value);
             }
+
+            base.OnParametersSet();
         }
     }
 }
