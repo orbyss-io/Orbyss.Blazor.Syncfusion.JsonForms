@@ -1,7 +1,8 @@
 # 📦 Orbyss.Blazor.Syncfusion.JsonForms
 
 **A full-featured Syncfusion-based UI renderer for [Orbyss.Blazor.JsonForms](https://github.com/orbyss-io/Orbyss.Blazor.JsonForms).**  
-This package brings the power of Syncfusion Blazor components to schema-driven forms using JSON Schema, UI Schema, and Translation Schema.
+This package brings the power of Syncfusion Blazor components to schema-driven forms using [jsonforms.io](https://jsonforms.io/) standard. All you need need to generate your JSON forms are: 1) JSON Schema, 2) UI Schema, and 3) Translation Schema.
+If you notice anything that is not working as you expect, please either let us know, or implement your own Components (see [Orbyss.Blazor.JsonForms README](https://github.com/orbyss-io/Orbyss.Blazor.JsonForms) how to do that)
 
 ![NuGet](https://img.shields.io/nuget/v/Orbyss.Blazor.Syncfusion.JsonForms)
 ![NuGet Downloads](https://img.shields.io/nuget/dt/Orbyss.Blazor.Syncfusion.JsonForms)
